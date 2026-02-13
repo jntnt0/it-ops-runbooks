@@ -1,0 +1,7 @@
+# Evidence raw dumps should never be committed
+/evidence/**/raw/
+/evidence/**/raw/*
+*.zip
+*.csv
+*.jsonl
+*.evtx
