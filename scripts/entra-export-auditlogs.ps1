@@ -1,4 +1,52 @@
 <#
+
+# Add this section to each script header comment block
+
+.MINIMUM ROLES / SCOPES
+  Delegated (interactive) via Microsoft Graph PowerShell:
+    - Minimum Graph scopes:
+      - AuditLog.Read.All
+    - Minimum Entra roles (to consent / run):
+      - Security Reader (typical minimum to view sign-in + audit logs in portals)
+      - Reports Reader (often sufficient for reading reports/logs in many tenants)
+    - Notes:
+      - If your account cannot consent to scopes, a Global Administrator must grant admin consent for the required scopes.
+
+  Application (automation) via app registration:
+    - Minimum Graph application permissions:
+      - AuditLog.Read.All
+    - Admin consent required:
+      - Yes (Global Administrator or Privileged Role Administrator can grant consent depending on tenant policy)
+
+.LICENSING UNAVAILABLE BEHAVIOR
+  - These scripts do not require Entra ID P1/P2.
+  - If the tenant lacks premium identity features (P1/P2), the exports still work.
+  - If the tenant lacks access to specific datasets (for example, risk events), this script will:
+    - Log a clear message stating the dataset is unavailable in this tenant/licensing context
+    - Exit with code 0 if the core export succeeded, or code 1 if the core export is blocked
+  - If Microsoft Graph returns 403/Authorization_RequestDenied:
+    - The script will fail fast, log the error, and instruct you to grant the required scope/permission.
+
+# Concrete edits you should apply now
+
+## 1) entra-export-signinlogs.ps1
+Insert under .LEAST PRIVILEGE / PERMISSIONS (or right after it):
+- The exact scopes listed above
+- Note that P1/P2 is not required for sign-in logs
+- Note the behavior on 403
+
+Also add one runtime guard after Ensure-GraphConnection:
+- If the query fails with 403, log: "Missing AuditLog.Read.All delegated/app permission or tenant policy blocks access."
+
+## 2) entra-export-auditlogs.ps1
+Same insert and same runtime guard.
+Audit logs also do not require P1/P2.
+
+# Next 3 actions
+- Paste the block above into both scripts and keep the language identical so your repo stays consistent.
+- Add a small catch for 403 that prints one actionable line: "Grant AuditLog.Read.All and retry" plus your chosen auth mode (delegated vs app).
+- For any future script that touches risky users/sign-ins or Identity Protection, change the licensing section to explicitly say "Requires Entra ID P2" and exit cleanly with a logged note when unavailable.
+
 .SYNOPSIS
   Export Entra ID audit logs for a UTC time window (optionally filtered) to CSV/JSON for runbook evidence.
 
