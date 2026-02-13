@@ -1,77 +1,94 @@
-# /INDEX.md
+# /README.md
 
 Tag: A
 
-This is the navigation front door for the repo. Templates define the rules. Story packs define targets. Runbooks contain execution steps. Evidence contains artifacts.
+This repo is a runbook driven lab and operations playbook for:
+- AZ-104 (Azure Administrator)
+- MS-102 (Microsoft 365 Administrator)
+- MD-102 (Endpoint Administrator)
+- SC-300 (Identity and Access Administrator)
+- SC-401 (Information Protection and Compliance Administrator)
 
-## Start here
+It is structured to produce repeatable, evidence backed runbooks, not loose notes.
 
-- Repo rules and standards:
-  - /templates/legend-and-scope.md
-  - /templates/contract.md
+## How to use this repo
 
-- Evidence guidance:
-  - /evidence/README.md
+1) Start at /INDEX.md
+- It links to targets, runbooks, templates, and evidence rules.
 
-## Runbooks (by exam)
+2) Pick a target from /story-packs/<exam>-targets.md
+- Targets are the backlog and priorities per exam.
 
-- AZ-104
-  - /runbooks/az-104/
-  - Targets: /story-packs/az-104-targets.md
+3) Execute the runbook under /runbooks/<exam>/
+- Follow steps, collect evidence, store artifacts under /evidence/<scenario-slug>/.
 
-- MS-102
-  - /runbooks/ms-102/
-  - Targets: /story-packs/ms-102-targets.md
+4) Keep it honest
+- Do not claim features exist if your SKU does not include them.
+- Use the A/B/C tags to tell the truth about what is demonstrable.
 
-- MD-102
-  - /runbooks/md-102/
-  - Targets: /story-packs/md-102-targets.md
+## Key repo rules
 
-- SC-300
-  - /runbooks/sc-300/
-  - Targets: /story-packs/sc-300-targets.md
+- One canonical runbook per scenario. Do not duplicate runbooks.
+- Shared fundamentals live under /runbooks/shared/.
+- Evidence never lives in /runbooks/.
+- Every runbook must include the required headings and end with "Next 3 actions" only.
 
-- SC-401
-  - /runbooks/sc-401/
-  - Targets: /story-packs/sc-401-targets.md
+See:
+- /templates/legend-and-scope.md
+- /templates/contract.md
 
-## Shared runbooks (fundamentals)
+## Repo layout
 
-- /runbooks/shared/
-  - DNS records and name resolution
-  - DHCP scopes and options
-  - VLANs and subnets
-  - Basic routing and NAT
-  - Kerberos vs NTLM
-  - AD replication (high level)
-  - Time sync for authentication
-  - Certificates and PKI basics
-  - Change management templates (pilot, rollback, comms)
+/runbooks/
+- /shared/
+- /az-104/
+- /ms-102/
+- /md-102/
+- /sc-300/
+- /sc-401/
 
-## Scripts and IaC
+/story-packs/
+- <exam>-targets.md files (project queues)
 
-- Scripts: /scripts/
-- IaC: /iac/
+/templates/
+- legend-and-scope.md
+- contract.md
 
-## Evidence folder convention
+/scripts/
+- automation and evidence collection helpers
 
-- Evidence for a scenario lives at: /evidence/<scenario-slug>/
-- Minimum files:
-  - notes.md
-  - timeline.md
-  - exports/
-  - screenshots/
-  - commands/
+/iac/
+- Bicep, ARM, Terraform
 
-## Suggested build order (so you do not stall)
+/evidence/
+- /<scenario-slug>/ evidence folders per runbook
 
-1) Create shared fundamentals runbooks first under /runbooks/shared/
-2) Build the first 5 SC-300 identity runbooks (they unblock MS-102 and MD-102 scenarios)
-3) Build the first 5 MD-102 endpoint runbooks (Autopilot, compliance, app deployment, updates)
-4) Build the first 5 MS-102 workload runbooks (mail flow, shared mailbox perms, OneDrive)
-5) Build the first 5 AZ-104 runbooks (VNet, NSG, VM recovery, Monitor, Key Vault)
+## Evidence standard
+
+Path:
+- /evidence/<scenario-slug>/
+
+Minimum:
+- notes.md
+- timeline.md
+- exports/
+- screenshots/ (redacted)
+- commands/
+
+Redaction:
+- Redact UPNs, tenant IDs, external IPs, message content as needed
+- Preserve timestamps, correlation IDs, error codes, policy names
+- Note redactions in notes.md
+
+## Recommended build order
+
+1) /runbooks/shared fundamentals first
+2) SC-300 identity runbooks (unblocks MS-102 and MD-102)
+3) MD-102 endpoint runbooks
+4) MS-102 workload runbooks
+5) AZ-104 Azure runbooks
 
 Next 3 actions
-1) Commit this /INDEX.md plus the two template files, then create the four target files under /story-packs/.
-2) Create the /runbooks/<exam>/ folders and a /runbooks/shared/ folder, even if empty, so links are valid.
-3) Pick one target from SC-300 and write the first runbook using the template, saving real evidence under /evidence/<scenario-slug>/.
+1) Commit /README.md and /INDEX.md, then commit the templates under /templates/.
+2) Create the /story-packs/<exam>-targets.md files and commit them.
+3) Write the first shared fundamental runbook under /runbooks/shared/ and collect evidence under /evidence/<scenario-slug>/.
