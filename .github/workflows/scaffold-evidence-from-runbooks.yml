@@ -1,1 +1,114 @@
-place
+# /.github/workflows/scaffold-evidence-from-runbooks.yml
+name: Scaffold evidence folders from runbooks
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scaffold:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create evidence scaffolds for all runbooks
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Find all runbooks markdown files under /runbooks (recursively)
+          mapfile -t RUNBOOKS < <(find runbooks -type f -name "*.md" -not -path "*/.git/*" | sort)
+
+          if [ "${#RUNBOOKS[@]}" -eq 0 ]; then
+            echo "No runbooks found under /runbooks"
+            exit 0
+          fi
+
+          for rb in "${RUNBOOKS[@]}"; do
+            # Evidence slug = filename without extension
+            base="$(basename "$rb")"
+            slug="${base%.md}"
+
+            # Evidence folder shape like your screenshot:
+            # /evidence/<slug>/{commands,exports,screenshots}/ + notes.md + timeline.md + .gitkeep
+            ev_dir="evidence/${slug}"
+            mkdir -p "${ev_dir}/commands" "${ev_dir}/exports" "${ev_dir}/screenshots"
+
+            # Keep folders tracked
+            touch "${ev_dir}/.gitkeep"
+            touch "${ev_dir}/commands/.gitkeep"
+            touch "${ev_dir}/exports/.gitkeep"
+            touch "${ev_dir}/screenshots/.gitkeep"
+
+            # Try to read Tag from the runbook (defaults to B if not found)
+            tag="$(grep -E '^[[:space:]]*Tag:[[:space:]]*' "$rb" | head -n 1 | sed -E 's/^[[:space:]]*Tag:[[:space:]]*//')"
+            if [ -z "${tag}" ]; then
+              tag="B"
+            fi
+
+            # Create notes.md and timeline.md if missing
+            if [ ! -f "${ev_dir}/notes.md" ]; then
+              cat > "${ev_dir}/notes.md" <<EOF
+          # Notes
+
+          Tag: ${tag}
+          Runbook: /${rb}
+
+          - What happened:
+          - Impact:
+          - Root cause:
+          - Fix:
+          - Follow-ups:
+          EOF
+            fi
+
+            if [ ! -f "${ev_dir}/timeline.md" ]; then
+              cat > "${ev_dir}/timeline.md" <<EOF
+          # Timeline
+
+          Tag: ${tag}
+          Runbook: /${rb}
+
+          - T0:
+          - T1:
+          - T2:
+          EOF
+            fi
+
+            # Optional: Create a small README pointer if missing
+            if [ ! -f "${ev_dir}/README.md" ]; then
+              cat > "${ev_dir}/README.md" <<EOF
+          # Evidence: ${slug}
+
+          Tag: ${tag}
+          Canonical runbook: /${rb}
+
+          Folder layout:
+          - commands/      (CLI/PowerShell outputs, redacted)
+          - exports/       (CSV/JSON exports, redacted)
+          - screenshots/   (redacted images)
+          - notes.md
+          - timeline.md
+          EOF
+            fi
+          done
+
+      - name: Commit and push (if changes)
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add evidence/
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Scaffold evidence folders for runbooks"
+          git push
