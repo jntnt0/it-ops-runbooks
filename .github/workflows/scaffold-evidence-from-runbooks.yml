@@ -11,8 +11,18 @@ jobs:
   scaffold:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout (full history for rebase)
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync to latest origin/main (clean tree)
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout main
+          git pull --rebase origin main
 
       - name: Create evidence scaffolds for all runbooks (unique by relative path)
         shell: bash
@@ -29,7 +39,6 @@ jobs:
           for rb in "${RUNBOOKS[@]}"; do
             rb_no_ext="${rb%.md}"
             slug="$(echo "$rb_no_ext" | sed -E 's#^\.?/##; s#[/\\]+#-#g')"
-
             ev_dir="evidence/${slug}"
 
             mkdir -p "${ev_dir}/commands" "${ev_dir}/exports" "${ev_dir}/screenshots"
@@ -39,9 +48,7 @@ jobs:
             touch "${ev_dir}/exports/.gitkeep"
             touch "${ev_dir}/screenshots/.gitkeep"
 
-            # IMPORTANT: grep returns exit code 1 when it finds nothing.
-            # With -e and pipefail, that kills the whole job.
-            # So make Tag parsing non-fatal and default to B.
+            # grep returns exit code 1 when it finds nothing. Make Tag parsing non-fatal and default to B.
             tag="$(
               (grep -E '^[[:space:]]*Tag:[[:space:]]*' "$rb" || true) \
               | head -n 1 \
@@ -96,10 +103,11 @@ jobs:
             fi
           done
 
-       - name: Commit and push (rebase + retry)
+      - name: Commit and push (rebase + retry)
         shell: bash
         run: |
           set -euo pipefail
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
@@ -110,19 +118,12 @@ jobs:
             exit 0
           fi
 
-          # Sync with latest main so push can fast-forward
-          git fetch origin main
-          git pull --rebase origin main
-
           git commit -m "Scaffold evidence folders for runbooks (path-based slugs)"
 
           # Push, and if another run beat us, rebase and retry once
           if ! git push origin HEAD:main; then
-            echo "Push failed (non-fast-forward). Rebasing and retrying once..."
+            echo "Push failed (non-fast-forward). Rebasing on latest origin/main and retrying once..."
             git fetch origin main
             git pull --rebase origin main
             git push origin HEAD:main
           fi
-
-          git commit -m "Scaffold evidence folders for runbooks (path-based slugs)"
-          git push
