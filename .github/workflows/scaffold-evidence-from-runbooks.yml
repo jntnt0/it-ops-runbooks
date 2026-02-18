@@ -1,5 +1,5 @@
 # /.github/workflows/scaffold-evidence-from-runbooks.yml
-name: Scaffold evidence folders from runbooks
+name: Scaffold evidence folders from runbooks (path-based slugs)
 
 on:
   workflow_dispatch:
@@ -14,12 +14,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create evidence scaffolds for all runbooks
+      - name: Create evidence scaffolds for all runbooks (unique by relative path)
         shell: bash
         run: |
           set -euo pipefail
 
-          # Find all runbooks markdown files under /runbooks (recursively)
           mapfile -t RUNBOOKS < <(find runbooks -type f -name "*.md" -not -path "*/.git/*" | sort)
 
           if [ "${#RUNBOOKS[@]}" -eq 0 ]; then
@@ -28,13 +27,17 @@ jobs:
           fi
 
           for rb in "${RUNBOOKS[@]}"; do
-            # Evidence slug = filename without extension
-            base="$(basename "$rb")"
-            slug="${base%.md}"
+            # Build a unique slug from the full relative path.
+            # Example:
+            #   runbooks/sc-300/identity-password-spray-response.md
+            # becomes:
+            #   runbooks-sc-300-identity-password-spray-response
+            rb_no_ext="${rb%.md}"
+            slug="$(echo "$rb_no_ext" | sed -E 's#^\.?/##; s#[/\\]+#-#g')"
 
-            # Evidence folder shape like your screenshot:
-            # /evidence/<slug>/{commands,exports,screenshots}/ + notes.md + timeline.md + .gitkeep
             ev_dir="evidence/${slug}"
+
+            # Folder shape like your screenshot
             mkdir -p "${ev_dir}/commands" "${ev_dir}/exports" "${ev_dir}/screenshots"
 
             # Keep folders tracked
@@ -43,7 +46,7 @@ jobs:
             touch "${ev_dir}/exports/.gitkeep"
             touch "${ev_dir}/screenshots/.gitkeep"
 
-            # Try to read Tag from the runbook (defaults to B if not found)
+            # Read Tag from the runbook, default B if missing
             tag="$(grep -E '^[[:space:]]*Tag:[[:space:]]*' "$rb" | head -n 1 | sed -E 's/^[[:space:]]*Tag:[[:space:]]*//')"
             if [ -z "${tag}" ]; then
               tag="B"
@@ -78,7 +81,7 @@ jobs:
           EOF
             fi
 
-            # Optional: Create a small README pointer if missing
+            # README pointer
             if [ ! -f "${ev_dir}/README.md" ]; then
               cat > "${ev_dir}/README.md" <<EOF
           # Evidence: ${slug}
@@ -110,5 +113,5 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Scaffold evidence folders for runbooks"
+          git commit -m "Scaffold evidence folders for runbooks (path-based slugs)"
           git push
