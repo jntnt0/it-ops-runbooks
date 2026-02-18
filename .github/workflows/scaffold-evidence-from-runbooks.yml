@@ -96,7 +96,7 @@ jobs:
             fi
           done
 
-      - name: Commit and push (if changes)
+       - name: Commit and push (rebase + retry)
         shell: bash
         run: |
           set -euo pipefail
@@ -108,6 +108,20 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
+          fi
+
+          # Sync with latest main so push can fast-forward
+          git fetch origin main
+          git pull --rebase origin main
+
+          git commit -m "Scaffold evidence folders for runbooks (path-based slugs)"
+
+          # Push, and if another run beat us, rebase and retry once
+          if ! git push origin HEAD:main; then
+            echo "Push failed (non-fast-forward). Rebasing and retrying once..."
+            git fetch origin main
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
 
           git commit -m "Scaffold evidence folders for runbooks (path-based slugs)"
