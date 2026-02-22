@@ -1,0 +1,257 @@
+
+==========================================================================================
+CONTEXT
+==========================================================================================
+
+>>> pwd
+
+Path
+----
+C:\Repos\it-ops-runbooks\scripts
+<<< exitcode: 0
+
+>>> Get-Date
+
+Friday, February 20, 2026 1:15:33 PM
+<<< exitcode: 0
+
+==========================================================================================
+REPO BASICS
+==========================================================================================
+
+>>> git rev-parse --show-toplevel
+C:/Repos/it-ops-runbooks
+<<< exitcode: 0
+
+>>> git rev-parse --is-inside-work-tree
+true
+<<< exitcode: 0
+
+>>> git remote -v
+inprogress	https://github.com/jntnt0/in-progress-runbooks.git (fetch)
+inprogress	https://github.com/jntnt0/in-progress-runbooks.git (push)
+origin	https://github.com/jntnt0/it-ops-runbooks.git (fetch)
+origin	https://github.com/jntnt0/it-ops-runbooks.git (push)
+<<< exitcode: 0
+
+>>> git status -sb
+## main...origin/main
+?? ../_audit/
+?? ../gcm-diagnose.log
+?? git-env-audit.ps1
+<<< exitcode: 0
+
+>>> git describe --tags --always --dirty
+4f0187e
+<<< exitcode: 0
+
+==========================================================================================
+GIT VERSION AND CONFIG
+==========================================================================================
+
+>>> git --version
+git version 2.51.0.windows.1
+<<< exitcode: 0
+
+>>> git config --list --show-origin
+file:C:/Program Files/Git/etc/gitconfig	diff.astextplain.textconv=astextplain
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.clean=git-lfs clean -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.smudge=git-lfs smudge -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.process=git-lfs filter-process
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.required=true
+file:C:/Program Files/Git/etc/gitconfig	http.sslbackend=schannel
+file:C:/Program Files/Git/etc/gitconfig	core.autocrlf=true
+file:C:/Program Files/Git/etc/gitconfig	core.fscache=true
+file:C:/Program Files/Git/etc/gitconfig	core.symlinks=true
+file:C:/Program Files/Git/etc/gitconfig	core.editor="C:\\Program Files\\Notepad++\\notepad++.exe" -multiInst -notabbar -nosession -noPlugin
+file:C:/Program Files/Git/etc/gitconfig	pull.rebase=false
+file:C:/Program Files/Git/etc/gitconfig	init.defaultbranch=master
+file:C:/Users/mini/.gitconfig	credential.https://github.com.helper=
+file:C:/Users/mini/.gitconfig	credential.https://github.com.helper=!'C:\Program Files\GitHub CLI\gh.exe' auth git-credential
+file:C:/Users/mini/.gitconfig	credential.https://gist.github.com.helper=
+file:C:/Users/mini/.gitconfig	credential.https://gist.github.com.helper=!'C:\Program Files\GitHub CLI\gh.exe' auth git-credential
+file:C:/Users/mini/.gitconfig	user.name=jntnt0
+file:C:/Users/mini/.gitconfig	user.email=tant88jonathan@gmail.com
+file:C:/Users/mini/.gitconfig	credential.helper=manager
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=false
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.ignorecase=true
+file:.git/config	remote.origin.url=https://github.com/jntnt0/it-ops-runbooks.git
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+file:.git/config	branch.main.remote=origin
+file:.git/config	branch.main.merge=refs/heads/main
+file:.git/config	remote.inprogress.url=https://github.com/jntnt0/in-progress-runbooks.git
+file:.git/config	remote.inprogress.fetch=+refs/heads/*:refs/remotes/inprogress/*
+<<< exitcode: 0
+
+>>> git config --global --list --show-origin
+file:C:/Users/mini/.gitconfig	credential.https://github.com.helper=
+file:C:/Users/mini/.gitconfig	credential.https://github.com.helper=!'C:\Program Files\GitHub CLI\gh.exe' auth git-credential
+file:C:/Users/mini/.gitconfig	credential.https://gist.github.com.helper=
+file:C:/Users/mini/.gitconfig	credential.https://gist.github.com.helper=!'C:\Program Files\GitHub CLI\gh.exe' auth git-credential
+file:C:/Users/mini/.gitconfig	user.name=jntnt0
+file:C:/Users/mini/.gitconfig	user.email=tant88jonathan@gmail.com
+file:C:/Users/mini/.gitconfig	credential.helper=manager
+<<< exitcode: 0
+
+>>> git config --system --list --show-origin
+file:C:/Program Files/Git/etc/gitconfig	diff.astextplain.textconv=astextplain
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.clean=git-lfs clean -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.smudge=git-lfs smudge -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.process=git-lfs filter-process
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.required=true
+file:C:/Program Files/Git/etc/gitconfig	http.sslbackend=schannel
+file:C:/Program Files/Git/etc/gitconfig	core.autocrlf=true
+file:C:/Program Files/Git/etc/gitconfig	core.fscache=true
+file:C:/Program Files/Git/etc/gitconfig	core.symlinks=true
+file:C:/Program Files/Git/etc/gitconfig	core.editor="C:\\Program Files\\Notepad++\\notepad++.exe" -multiInst -notabbar -nosession -noPlugin
+file:C:/Program Files/Git/etc/gitconfig	pull.rebase=false
+file:C:/Program Files/Git/etc/gitconfig	init.defaultbranch=master
+<<< exitcode: 0
+
+>>> git config user.name
+jntnt0
+<<< exitcode: 0
+
+>>> git config user.email
+tant88jonathan@gmail.com
+<<< exitcode: 0
+
+>>> git config --global credential.helper
+manager
+<<< exitcode: 0
+
+>>> git config --show-origin credential.helper
+file:C:/Users/mini/.gitconfig	manager
+<<< exitcode: 0
+
+==========================================================================================
+BRANCH AND HISTORY
+==========================================================================================
+
+>>> git branch -vv
+* main 4f0187e [origin/main] Rename Block IP w\o CA.md to Block IP with out CA.md
+<<< exitcode: 0
+
+>>> git show -s --format=fuller HEAD
+commit 4f0187e0d59ed71a7f9a0d3be102bc2961d73898
+Author:     jntnt0 <jontant88@gmail.com>
+AuthorDate: Fri Feb 20 12:41:09 2026 -0500
+Commit:     GitHub <noreply@github.com>
+CommitDate: Fri Feb 20 12:41:09 2026 -0500
+
+    Rename Block IP w\o CA.md to Block IP with out CA.md
+<<< exitcode: 0
+
+>>> git log --oneline --decorate --graph -n 30
+* 4f0187e (HEAD -> main, origin/main, origin/HEAD) Rename Block IP w\o CA.md to Block IP with out CA.md
+* bc82f3a (origin/In-Progress-Runbooks) Create evidence-method.md
+* 288255e Scaffold evidence folders for runbooks (path-based slugs)
+* 520760d Create maintenance-window-and-risk-assessment-template.md
+* 92e55f4 Delete runbooks/az-700/maintenance-window-and-risk-assessment-template.md
+* 0da023e Rename backout-plan-template.md to backout-plan-template.md
+* a34c548 Rename outage-triage-framework.md to outage-triage-framework.md
+* ed46df5 Rename evidence-collection-standards.md to evidence-collection-standards.md
+* ae9c149 Create .gitkeep
+* 08de28d Create evidence-collection-standards.md
+* fb6476d Create maintenance-window-and-risk-assessment-template.md
+* 383351e Create backout-plan-template.md
+* f32a50f Create outage-triage-framework.md
+* ab6beed Create kerberos-vs-ntlm-explanation.md
+* 3dc0f69 Create nat-troubleshooting-flow.md
+* 981f600 Create vlan-misconfiguration-scenario.md
+* 462d935 Create dhcp-scope-troubleshooting.md
+* 16f81a6 Create .gitkeep
+* 8883d88 Create dns-records-troubleshooting.md
+* 8ccb0c0 Create vm-access-recovery-reset-password-and-serial-console.md
+* 7358175 Create budget-and-cost-alert-implementation.md
+* 8b6468c Create azure-activity-log-vs-sign-in-log-correlation.md
+* f677cd2 Create storage-account-security-and-403-troubleshooting.md
+* cee7bef Create vnet-nsg-troubleshooting-flow.md
+* 703b58c Create azure-rbac-in-practice.md
+* 405e580 Scaffold evidence folders for runbooks (path-based slugs)
+* 6acf369 Update scaffold-evidence-from-runbooks.yml
+* 53af063 Update scaffold-evidence-from-runbooks.yml
+* c6532c0 Create license-assignment-automation-powershell-graph-group-based.md
+* 1006d46 Create sharepoint-onedrive-sync-failure-troubleshooting.md
+<<< exitcode: 0
+
+>>> git reflog -n 30
+4f0187e HEAD@{0}: checkout: moving from main to main
+4f0187e HEAD@{1}: pull: Fast-forward
+cf39137 HEAD@{2}: checkout: moving from main to main
+cf39137 HEAD@{3}: reset: moving to HEAD~1
+95f1669 HEAD@{4}: commit: test auth cache
+cf39137 HEAD@{5}: commit: add entra graph smoke test and evidence guardrails
+5ac569e HEAD@{6}: clone: from https://github.com/jntnt0/it-ops-runbooks.git
+<<< exitcode: 0
+
+>>> git rev-list --left-right --count origin/main...HEAD
+0	0
+<<< exitcode: 0
+
+>>> git diff --stat
+(no output)
+<<< exitcode: 0
+
+>>> git diff --name-status origin/main..HEAD
+(no output)
+<<< exitcode: 0
+
+==========================================================================================
+TRACKED FILES AND ATTRIBUTES
+==========================================================================================
+
+>>> git ls-files | measure
+
+Count             : 6
+Average           : 
+Sum               : 
+Maximum           : 
+Minimum           : 
+StandardDeviation : 
+Property          :
+<<< exitcode: 0
+
+>>> git ls-files -v | Select-String "^[a-z]" | Select-Object -First 50
+
+H .gitkeep
+H README.md
+H _template.ps1
+H entra-export-auditlogs.ps1
+H entra-export-signinlogs.ps1
+H entra-graph-smoketest.ps1
+<<< exitcode: 0
+
+>>> git check-attr -a -- .
+(no output)
+<<< exitcode: 0
+
+>>> git ls-files --stage | Select-Object -First 20
+100644 48cdce85287243a96a9e7d47855104acbcb79837 0	.gitkeep
+100644 4d8d8d3eb121b03599fb9482d6a1ae077166469a 0	README.md
+100644 44f83596206005aeb06c2f84ec652929589fa955 0	_template.ps1
+100644 9187f4614ebe7a8df5fe4972345eeee04b11f644 0	entra-export-auditlogs.ps1
+100644 789303eb532c6dffa3998340d12321e4150e32fe 0	entra-export-signinlogs.ps1
+100644 593909b04e7ae20ff07958ad41f87bb0421c3034 0	entra-graph-smoketest.ps1
+<<< exitcode: 0
+
+>>> type .gitignore 2>
+Invoke-Expression: C:\Repos\it-ops-runbooks\scripts\git-env-audit.ps1:45
+Line |
+  45 |      $output = Invoke-Expression $CommandLine 2>&1 | Out-String
+     |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Missing file specification after redirection operator.
+<<< exitcode: 0
+
+>>> type .gitattributes 2>
+Invoke-Expression: C:\Repos\it-ops-runbooks\scripts\git-env-audit.ps1:45
+Line |
+  45 |      $output = Invoke-Expression $CommandLine 2>&1 | Out-String
+     |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Missing file specification after redirection operator.
+<<< exitcode: 0
+
+DONE

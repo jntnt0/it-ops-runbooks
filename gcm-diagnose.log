@@ -1,0 +1,196 @@
+﻿Diagnose log at 2026-02-13T19:21:18Z
+
+AppPath: C:\Program Files\Git\mingw64\bin\git-credential-manager.exe
+InstallDir: C:\Program Files\Git\mingw64\bin\
+Version: 2.6.1+786ab03440ddc82e807a97c0e540f5247e44cec6
+
+------------
+Diagnostic: Environment
+Skipped: False
+Success: True
+Exception: None
+Log:
+OSType: Windows
+OSVersion: 10.0 (build 19045)
+Reading environment variables... OK
+ Variables:
+HOMEPATH=\Users\mini
+POSH_INSTALLER=winget
+COMPUTERNAME=DESKTOP-SV6710R
+DriverData=C:\Windows\System32\Drivers\DriverData
+GIT_TRACE2_PARENT_SID=1d84aa5d-b259-4c3c-963d-a95d3666223e
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+ProgramW6432=C:\Program Files
+OneDrive=C:\Users\mini\OneDrive
+ChocolateyLastPathUpdate=134023403294773753
+WT_PROFILE_ID={574e775e-4f2a-5b96-ac1e-a2962a402336}
+POSH_CURSOR_COLUMN=1
+SESSIONNAME=Console
+TMP=C:\Users\mini\AppData\Local\Temp
+VIRTUAL_ENV_DISABLE_PROMPT=1
+LC_CTYPE=C.UTF-8
+PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
+POSH_SHELL=pwsh
+POWERSHELL_DISTRIBUTION_CHANNEL=MSI:Windows 10 Home
+TEMP=C:\Users\mini\AppData\Local\Temp
+LOCALAPPDATA=C:\Users\mini\AppData\Local
+MSYSTEM=MINGW64
+TERM=xterm-256color
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 142 Stepping 9, GenuineIntel
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2025.2\bin
+POSH_THEMES_PATH=C:\Users\mini\AppData\Local\Programs\oh-my-posh\themes\
+USERDOMAIN=DESKTOP-SV6710R
+PROCESSOR_REVISION=8e09
+Path=C:/Program Files/Git/mingw64/libexec/git-core;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\mini\bin;C:\Program Files\PowerShell\7;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\PowerShell\7\;C:\Program Files\nodejs\;C:\Program Files\GitHub CLI\;C:\Program Files\PowerShell\7;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\PowerShell\7\;C:\Users\mini\AppData\Local\Programs\oh-my-posh\bin\;C:\Users\mini\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA 2025.2\bin;C:\Users\mini\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\mini\.dotnet\tools;C:\Users\mini\AppData\Local\Microsoft\WinGet\Packages\charmbracelet.glow_Microsoft.WinGet.Source_8wekyb3d8bbwe\glow_2.1.1_Windows_x86_64;C:\Program Files\wkhtmltopdf\bin;C:\Users\mini\AppData\Roaming\npm;C:\Users\mini\Documents\PowerShell\Modules\Microsoft.Graph.Authentication\2.35.1\Dependencies\runtimes\win-x64\native
+PROCESSOR_LEVEL=6
+NUMBER_OF_PROCESSORS=4
+TMPDIR=C:\Users\mini\AppData\Local\Temp
+ProgramFiles(x86)=C:\Program Files (x86)
+PUBLIC=C:\Users\Public
+CommonProgramFiles=C:\Program Files (x86)\Common Files
+WT_SESSION=8d90db4f-ed79-4012-9f64-6d3f11a65b92
+WSLENV=WT_SESSION:WT_PROFILE_ID:
+USERPROFILE=C:\Users\mini
+ProgramFiles=C:\Program Files (x86)
+PLINK_PROTOCOL=ssh
+COLORTERM=truecolor
+POSH_SESSION_ID=5531f235-61d2-4a94-b93c-b68129443453
+ChocolateyInstall=C:\ProgramData\chocolatey
+CONDA_PROMPT_MODIFIER=False
+POSH_CURSOR_LINE=47
+POWERLINE_COMMAND=oh-my-posh
+USERNAME=mini
+HOME=C:\Users\mini
+SystemRoot=C:\WINDOWS
+CommonProgramW6432=C:\Program Files\Common Files
+LOGONSERVER=\\DESKTOP-SV6710R
+GIT_EXEC_PATH=C:/Program Files/Git/mingw64/libexec/git-core
+POSH_THEME=C:\Users\mini\AppData\Local\Programs\oh-my-posh\themes\paradox.omp.json
+ProgramData=C:\ProgramData
+PYENV_VIRTUALENV_DISABLE_PROMPT=1
+USERDOMAIN_ROAMINGPROFILE=DESKTOP-SV6710R
+APPDATA=C:\Users\mini\AppData\Roaming
+HOMEDRIVE=C:
+PSModulePath=C:\Users\mini\Documents\PowerShell\Modules;C:\Program Files\PowerShell\Modules;c:\program files\powershell\7\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+POSH_SHELL_VERSION=7.5.4
+PROCESSOR_ARCHITEW6432=AMD64
+PROCESSOR_ARCHITECTURE=x86
+OS=Windows_NT
+ComSpec=C:\WINDOWS\system32\cmd.exe
+SystemDrive=C:
+windir=C:\WINDOWS
+ALLUSERSPROFILE=C:\ProgramData
+
+
+------------
+Diagnostic: File system
+Skipped: False
+Success: True
+Exception: None
+Log:
+Temporary directory is 'C:\Users\mini\AppData\Local\Temp\'...
+Checking basic file I/O...
+Writing to temporary file 'C:\Users\mini\AppData\Local\Temp\75124938a54d719daf733491'... OK
+Reading from temporary file 'C:\Users\mini\AppData\Local\Temp\75124938a54d719daf733491'... OK
+Deleting temporary file 'C:\Users\mini\AppData\Local\Temp\75124938a54d719daf733491'... OK
+Testing IFileSystem instance...
+UserHomePath: C:\Users\mini
+UserDataDirectoryPath: C:\Users\mini\.gcm
+GetCurrentDirectory(): C:\Repos\it-ops-runbooks
+
+------------
+Diagnostic: Networking
+Skipped: False
+Success: True
+Exception: None
+Log:
+Checking networking and HTTP stack...
+Creating HTTP client... OK
+IsNetworkAvailable: True
+Sending HEAD request to http://example.com...Sending HEAD request to https://example.com... OK
+ OK
+Acquiring free TCP port... OK
+Testing local HTTP loopback connections...
+Creating new HTTP listener for http://localhost:65520/... OK
+Waiting for loopback connection... OK
+Writing response... OK
+Waiting for response data... OK
+Loopback connection data OK
+
+------------
+Diagnostic: Git
+Skipped: False
+Success: True
+Exception: None
+Log:
+Getting Git version... OK
+Git version is '2.51.0.windows.1'
+Locating current repository...Git repository at 'C:/Repos/it-ops-runbooks/.git'
+ OK
+Listing all Git configuration... OK
+Git configuration:
+file:C:/Program Files/Git/etc/gitconfig	diff.astextplain.textconv=astextplain
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.clean=git-lfs clean -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.smudge=git-lfs smudge -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.process=git-lfs filter-process
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.required=true
+file:C:/Program Files/Git/etc/gitconfig	http.sslbackend=schannel
+file:C:/Program Files/Git/etc/gitconfig	core.autocrlf=true
+file:C:/Program Files/Git/etc/gitconfig	core.fscache=true
+file:C:/Program Files/Git/etc/gitconfig	core.symlinks=true
+file:C:/Program Files/Git/etc/gitconfig	core.editor="C:\\Program Files\\Notepad++\\notepad++.exe" -multiInst -notabbar -nosession -noPlugin
+file:C:/Program Files/Git/etc/gitconfig	pull.rebase=false
+file:C:/Program Files/Git/etc/gitconfig	init.defaultbranch=master
+file:C:/Users/mini/.gitconfig	credential.https://github.com.helper=
+file:C:/Users/mini/.gitconfig	credential.https://github.com.helper=!'C:\Program Files\GitHub CLI\gh.exe' auth git-credential
+file:C:/Users/mini/.gitconfig	credential.https://gist.github.com.helper=
+file:C:/Users/mini/.gitconfig	credential.https://gist.github.com.helper=!'C:\Program Files\GitHub CLI\gh.exe' auth git-credential
+file:C:/Users/mini/.gitconfig	user.name=jntnt0
+file:C:/Users/mini/.gitconfig	user.email=tant88jonathan@gmail.com
+file:C:/Users/mini/.gitconfig	credential.helper=manager
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=false
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.ignorecase=true
+file:.git/config	remote.origin.url=https://github.com/jntnt0/it-ops-runbooks.git
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+file:.git/config	branch.main.remote=origin
+file:.git/config	branch.main.merge=refs/heads/main
+
+
+------------
+Diagnostic: Credential storage
+Skipped: False
+Success: True
+Exception: None
+Log:
+ICredentialStore instance is of type: CredentialStore
+Writing test credential... OK
+Reading test credential... OK
+Deleting test credential... OK
+
+------------
+Diagnostic: Microsoft authentication (AAD/MSA)
+Skipped: False
+Success: True
+Exception: None
+Log:
+Broker is not enabled.
+Flow type is: Auto
+Gathering MSAL token cache data... OK
+CacheDirectory: C:\Users\mini\AppData\Local\.IdentityService
+CacheFileName: msal.cache
+CacheFilePath: C:\Users\mini\AppData\Local\.IdentityService\msal.cache
+Creating cache helper... OK
+Verifying MSAL token cache persistence... OK
+
+------------
+Diagnostic: GitHub API
+Skipped: False
+Success: True
+Exception: None
+Log:
+Using 'https://github.com/' as API target.
+Querying '/meta' endpoint... OK
+

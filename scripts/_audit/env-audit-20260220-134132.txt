@@ -1,0 +1,578 @@
+
+==========================================================================================
+CONTEXT
+==========================================================================================
+
+>>> pwd
+
+Drive        : C
+Provider     : Microsoft.PowerShell.Core\FileSystem
+ProviderPath : C:\Repos\it-ops-runbooks\scripts
+Path         : C:\Repos\it-ops-runbooks\scripts
+<<< exitcode: 0
+
+>>> Get-Date
+
+DisplayHint : DateTime
+DateTime    : Friday, February 20, 2026 1:41:32 PM
+Date        : 2/20/2026 12:00:00 AM
+Day         : 20
+DayOfWeek   : Friday
+DayOfYear   : 51
+Hour        : 13
+Kind        : Local
+Millisecond : 348
+Microsecond : 108
+Nanosecond  : 800
+Minute      : 41
+Month       : 2
+Second      : 32
+Ticks       : 639071916923481088
+TimeOfDay   : 13:41:32.3481088
+Year        : 2026
+<<< exitcode: 0
+
+>>> whoami.exe
+desktop-sv6710r\mini
+<<< exitcode: 0
+
+>>> hostname.exe
+DESKTOP-SV6710R
+<<< exitcode: 0
+
+==========================================================================================
+POWERSHELL
+==========================================================================================
+
+>>> $PSVersionTable
+
+Name  : PSVersion
+Key   : PSVersion
+Value : 7.5.4
+
+Name  : PSEdition
+Key   : PSEdition
+Value : Core
+
+Name  : GitCommitId
+Key   : GitCommitId
+Value : 7.5.4
+
+Name  : OS
+Key   : OS
+Value : Microsoft Windows 10.0.19045
+
+Name  : Platform
+Key   : Platform
+Value : Win32NT
+
+Name  : PSCompatibleVersions
+Key   : PSCompatibleVersions
+Value : {1.0, 2.0, 3.0, 4.0…}
+
+Name  : PSRemotingProtocolVersion
+Key   : PSRemotingProtocolVersion
+Value : 2.3
+
+Name  : SerializationVersion
+Key   : SerializationVersion
+Value : 1.1.0.1
+
+Name  : WSManStackVersion
+Key   : WSManStackVersion
+Value : 3.0
+<<< exitcode: 0
+
+>>> Get-ExecutionPolicy -List
+
+        Scope ExecutionPolicy
+        ----- ---------------
+MachinePolicy       Undefined
+   UserPolicy       Undefined
+      Process       Undefined
+  CurrentUser    RemoteSigned
+ LocalMachine    RemoteSigned
+<<< exitcode: 0
+
+>>> $env:PATH
+C:\Program Files\PowerShell\7;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\PowerShell\7\;C:\Program Files\nodejs\;C:\Program Files\GitHub CLI\;C:\Program Files\PowerShell\7;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\PowerShell\7\;C:\Users\mini\AppData\Local\Programs\oh-my-posh\bin\;C:\Users\mini\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA 2025.2\bin;C:\Users\mini\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\mini\.dotnet\tools;C:\Users\mini\AppData\Local\Microsoft\WinGet\Packages\charmbracelet.glow_Microsoft.WinGet.Source_8wekyb3d8bbwe\glow_2.1.1_Windows_x86_64;C:\Program Files\wkhtmltopdf\bin;C:\Users\mini\AppData\Roaming\npm
+<<< exitcode: 0
+
+==========================================================================================
+SYSTEM
+==========================================================================================
+
+>>> Get-ComputerInfo (selected)
+
+OsName                : Microsoft Windows 10 Home
+OsVersion             : 10.0.19045
+OsBuildNumber         : 19045
+WindowsVersion        : 2009
+CsName                : DESKTOP-SV6710R
+CsManufacturer        : Microsoft Corporation
+CsModel               : Surface Go
+CsTotalPhysicalMemory : 4173832192
+OsLastBootUpTime      : 2/20/2026 9:58:02 AM
+<<< exitcode: 0
+
+>>> systeminfo.exe
+
+Host Name:                 DESKTOP-SV6710R
+OS Name:                   Microsoft Windows 10 Home
+OS Version:                10.0.19045 N/A Build 19045
+OS Manufacturer:           Microsoft Corporation
+OS Configuration:          Standalone Workstation
+OS Build Type:             Multiprocessor Free
+Registered Owner:          mini
+Registered Organization:   
+Product ID:                00356-05754-57477-AAOEM
+Original Install Date:     8/23/2025, 3:20:18 PM
+System Boot Time:          2/20/2026, 9:58:02 AM
+System Manufacturer:       Microsoft Corporation
+System Model:              Surface Go
+System Type:               x64-based PC
+Processor(s):              1 Processor(s) Installed.
+                           [01]: Intel64 Family 6 Model 142 Stepping 9 GenuineIntel ~1608 Mhz
+BIOS Version:              Microsoft Corporation 1.0.38, 9/20/2022
+Windows Directory:         C:\WINDOWS
+System Directory:          C:\WINDOWS\system32
+Boot Device:               \Device\HarddiskVolume1
+System Locale:             en-us;English (United States)
+Input Locale:              en-us;English (United States)
+Time Zone:                 (UTC-05:00) Eastern Time (US & Canada)
+Total Physical Memory:     3,980 MB
+Available Physical Memory: 775 MB
+Virtual Memory: Max Size:  11,660 MB
+Virtual Memory: Available: 6,483 MB
+Virtual Memory: In Use:    5,177 MB
+Page File Location(s):     C:\pagefile.sys
+Domain:                    WORKGROUP
+Logon Server:              \\DESKTOP-SV6710R
+Hotfix(s):                 12 Hotfix(s) Installed.
+                           [01]: KB5066130
+                           [02]: KB5056577
+                           [03]: KB5011048
+                           [04]: KB5015684
+                           [05]: KB5072653
+                           [06]: KB5071959
+                           [07]: KB5014032
+                           [08]: KB5032907
+                           [09]: KB5063261
+                           [10]: KB5063979
+                           [11]: KB5066790
+                           [12]: KB5071982
+Network Card(s):           2 NIC(s) Installed.
+                           [01]: Qualcomm Atheros QCA61x4A Wireless Network Adapter
+                                 Connection Name: Wi-Fi
+                                 DHCP Enabled:    Yes
+                                 DHCP Server:     172.20.10.1
+                                 IP address(es)
+                                 [01]: 172.20.10.4
+                                 [02]: fe80::de2f:cf5:cb04:4907
+                                 [03]: 2600:1005:b08d:b6b2:1c26:8a17:556a:aede
+                                 [04]: 2600:1005:b08d:b6b2:4072:4d27:2dda:6896
+                           [02]: Bluetooth Device (Personal Area Network)
+                                 Connection Name: Bluetooth Network Connection
+                                 Status:          Media disconnected
+Hyper-V Requirements:      VM Monitor Mode Extensions: Yes
+                           Virtualization Enabled In Firmware: Yes
+                           Second Level Address Translation: Yes
+                           Data Execution Prevention Available: Yes
+<<< exitcode: 0
+
+==========================================================================================
+NETWORK (BASIC)
+==========================================================================================
+
+>>> ipconfig.exe /all
+
+Windows IP Configuration
+
+   Host Name . . . . . . . . . . . . : DESKTOP-SV6710R
+   Primary Dns Suffix  . . . . . . . : 
+   Node Type . . . . . . . . . . . . : Hybrid
+   IP Routing Enabled. . . . . . . . : No
+   WINS Proxy Enabled. . . . . . . . : No
+
+Wireless LAN adapter Local Area Connection* 1:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Microsoft Wi-Fi Direct Virtual Adapter
+   Physical Address. . . . . . . . . : DA-C4-97-BC-23-E7
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+
+Wireless LAN adapter Local Area Connection* 2:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Microsoft Wi-Fi Direct Virtual Adapter #2
+   Physical Address. . . . . . . . . : EA-C4-97-BC-23-E7
+   DHCP Enabled. . . . . . . . . . . : No
+   Autoconfiguration Enabled . . . . : Yes
+
+Wireless LAN adapter Wi-Fi:
+
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Qualcomm Atheros QCA61x4A Wireless Network Adapter
+   Physical Address. . . . . . . . . : D8-C4-97-BC-23-E7
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+   IPv6 Address. . . . . . . . . . . : 2600:1005:b08d:b6b2:4072:4d27:2dda:6896(Preferred) 
+   Temporary IPv6 Address. . . . . . : 2600:1005:b08d:b6b2:1c26:8a17:556a:aede(Preferred) 
+   Link-local IPv6 Address . . . . . : fe80::de2f:cf5:cb04:4907%5(Preferred) 
+   IPv4 Address. . . . . . . . . . . : 172.20.10.4(Preferred) 
+   Subnet Mask . . . . . . . . . . . : 255.255.255.240
+   Lease Obtained. . . . . . . . . . : Friday, February 20, 2026 9:59:05 AM
+   Lease Expires . . . . . . . . . . : Friday, February 20, 2026 2:36:33 PM
+   Default Gateway . . . . . . . . . : fe80::3c07:d7ff:fe2c:4864%5
+                                       172.20.10.1
+   DHCP Server . . . . . . . . . . . : 172.20.10.1
+   DHCPv6 IAID . . . . . . . . . . . : 131646615
+   DHCPv6 Client DUID. . . . . . . . : 00-01-00-07-30-3B-CD-60-92-A2-5B-CA-FA-AD
+   DNS Servers . . . . . . . . . . . : fe80::3c07:d7ff:fe2c:4864%5
+                                       172.20.10.1
+   NetBIOS over Tcpip. . . . . . . . : Enabled
+
+Ethernet adapter Bluetooth Network Connection:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Bluetooth Device (Personal Area Network)
+   Physical Address. . . . . . . . . : D8-C4-97-BC-23-E8
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+<<< exitcode: 0
+
+>>> route print
+===========================================================================
+Interface List
+  3...da c4 97 bc 23 e7 ......Microsoft Wi-Fi Direct Virtual Adapter
+ 20...ea c4 97 bc 23 e7 ......Microsoft Wi-Fi Direct Virtual Adapter #2
+  5...d8 c4 97 bc 23 e7 ......Qualcomm Atheros QCA61x4A Wireless Network Adapter
+ 14...d8 c4 97 bc 23 e8 ......Bluetooth Device (Personal Area Network)
+  1...........................Software Loopback Interface 1
+===========================================================================
+
+IPv4 Route Table
+===========================================================================
+Active Routes:
+Network Destination        Netmask          Gateway       Interface  Metric
+          0.0.0.0          0.0.0.0      172.20.10.1      172.20.10.4     35
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+      172.20.10.0  255.255.255.240         On-link       172.20.10.4    291
+      172.20.10.4  255.255.255.255         On-link       172.20.10.4    291
+     172.20.10.15  255.255.255.255         On-link       172.20.10.4    291
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+        224.0.0.0        240.0.0.0         On-link       172.20.10.4    291
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+  255.255.255.255  255.255.255.255         On-link       172.20.10.4    291
+===========================================================================
+Persistent Routes:
+  None
+
+IPv6 Route Table
+===========================================================================
+Active Routes:
+ If Metric Network Destination      Gateway
+  5    291 ::/0                     fe80::3c07:d7ff:fe2c:4864
+  1    331 ::1/128                  On-link
+  5    291 2600:1005:b08d:b6b2::/64 On-link
+  5    291 2600:1005:b08d:b6b2:1c26:8a17:556a:aede/128
+                                    On-link
+  5    291 2600:1005:b08d:b6b2:4072:4d27:2dda:6896/128
+                                    On-link
+  5    291 fe80::/64                On-link
+  5    291 fe80::de2f:cf5:cb04:4907/128
+                                    On-link
+  1    331 ff00::/8                 On-link
+  5    291 ff00::/8                 On-link
+===========================================================================
+Persistent Routes:
+  None
+<<< exitcode: 0
+
+>>> netsh winhttp show proxy
+
+Current WinHTTP proxy settings:
+
+    Direct access (no proxy server).
+<<< exitcode: 0
+
+>>> Test-NetConnection github.com -Port 443
+
+ComputerName             : github.com
+RemoteAddress            : 140.82.113.4
+ResolvedAddresses        : {140.82.113.4}
+PingSucceeded            : False
+PingReplyDetails         : 
+TcpClientSocket          : 
+TcpTestSucceeded         : True
+RemotePort               : 443
+TraceRoute               : 
+Detailed                 : False
+InterfaceAlias           : Wi-Fi
+InterfaceIndex           : 5
+InterfaceDescription     : Qualcomm Atheros QCA61x4A Wireless Network Adapter
+NetAdapter               : MSFT_NetAdapter (CreationClassName = "MSFT_NetAdapter", DeviceID = "{1A7E1E1B-6C6D-4254-8CBC-C88BB212AE21}", SystemCreationClassName = "CIM_NetworkPort", SystemName = "DESKTOP-SV6710R")
+NetRoute                 : MSFT_NetRoute (InstanceID = ":8:8:8:9:55?55;A?8?:8;:8;55;")
+SourceAddress            : 172.20.10.4
+NameResolutionSucceeded  : True
+BasicNameResolution      : {Microsoft.DnsClient.Commands.DnsRecord_A}
+LLMNRNetbiosRecords      : {}
+DNSOnlyRecords           : {Microsoft.DnsClient.Commands.DnsRecord_A}
+AllNameResolutionResults : Microsoft.DnsClient.Commands.DnsRecord_A
+IsAdmin                  : True
+NetworkIsolationContext  : Internet
+MatchingIPsecRules       :
+<<< exitcode: 0
+
+>>> Resolve-DnsName github.com
+
+Name       Type TTL Section IPAddress
+----       ---- --- ------- ---------
+github.com A    18  Answer  140.82.113.4
+<<< exitcode: 0
+
+==========================================================================================
+GIT (GLOBAL)
+==========================================================================================
+
+>>> git --version
+git version 2.51.0.windows.1
+<<< exitcode: 0
+
+>>> git config --list --show-origin
+file:C:/Program Files/Git/etc/gitconfig	diff.astextplain.textconv=astextplain
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.clean=git-lfs clean -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.smudge=git-lfs smudge -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.process=git-lfs filter-process
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.required=true
+file:C:/Program Files/Git/etc/gitconfig	http.sslbackend=schannel
+file:C:/Program Files/Git/etc/gitconfig	core.autocrlf=true
+file:C:/Program Files/Git/etc/gitconfig	core.fscache=true
+file:C:/Program Files/Git/etc/gitconfig	core.symlinks=true
+file:C:/Program Files/Git/etc/gitconfig	core.editor="C:\\Program Files\\Notepad++\\notepad++.exe" -multiInst -notabbar -nosession -noPlugin
+file:C:/Program Files/Git/etc/gitconfig	pull.rebase=false
+file:C:/Program Files/Git/etc/gitconfig	init.defaultbranch=master
+file:C:/Users/mini/.gitconfig	credential.https://github.com.helper=
+file:C:/Users/mini/.gitconfig	credential.https://github.com.helper=!'C:\Program Files\GitHub CLI\gh.exe' auth git-credential
+file:C:/Users/mini/.gitconfig	credential.https://gist.github.com.helper=
+file:C:/Users/mini/.gitconfig	credential.https://gist.github.com.helper=!'C:\Program Files\GitHub CLI\gh.exe' auth git-credential
+file:C:/Users/mini/.gitconfig	user.name=jntnt0
+file:C:/Users/mini/.gitconfig	user.email=tant88jonathan@gmail.com
+file:C:/Users/mini/.gitconfig	credential.helper=manager
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=false
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.ignorecase=true
+file:.git/config	remote.origin.url=https://github.com/jntnt0/it-ops-runbooks.git
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+file:.git/config	branch.main.remote=origin
+file:.git/config	branch.main.merge=refs/heads/main
+file:.git/config	remote.inprogress.url=https://github.com/jntnt0/in-progress-runbooks.git
+file:.git/config	remote.inprogress.fetch=+refs/heads/*:refs/remotes/inprogress/*
+<<< exitcode: 0
+
+>>> git config --global --list --show-origin
+file:C:/Users/mini/.gitconfig	credential.https://github.com.helper=
+file:C:/Users/mini/.gitconfig	credential.https://github.com.helper=!'C:\Program Files\GitHub CLI\gh.exe' auth git-credential
+file:C:/Users/mini/.gitconfig	credential.https://gist.github.com.helper=
+file:C:/Users/mini/.gitconfig	credential.https://gist.github.com.helper=!'C:\Program Files\GitHub CLI\gh.exe' auth git-credential
+file:C:/Users/mini/.gitconfig	user.name=jntnt0
+file:C:/Users/mini/.gitconfig	user.email=tant88jonathan@gmail.com
+file:C:/Users/mini/.gitconfig	credential.helper=manager
+<<< exitcode: 0
+
+>>> git config --system --list --show-origin
+file:C:/Program Files/Git/etc/gitconfig	diff.astextplain.textconv=astextplain
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.clean=git-lfs clean -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.smudge=git-lfs smudge -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.process=git-lfs filter-process
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.required=true
+file:C:/Program Files/Git/etc/gitconfig	http.sslbackend=schannel
+file:C:/Program Files/Git/etc/gitconfig	core.autocrlf=true
+file:C:/Program Files/Git/etc/gitconfig	core.fscache=true
+file:C:/Program Files/Git/etc/gitconfig	core.symlinks=true
+file:C:/Program Files/Git/etc/gitconfig	core.editor="C:\\Program Files\\Notepad++\\notepad++.exe" -multiInst -notabbar -nosession -noPlugin
+file:C:/Program Files/Git/etc/gitconfig	pull.rebase=false
+file:C:/Program Files/Git/etc/gitconfig	init.defaultbranch=master
+<<< exitcode: 0
+
+>>> git config user.name
+jntnt0
+<<< exitcode: 0
+
+>>> git config user.email
+tant88jonathan@gmail.com
+<<< exitcode: 0
+
+>>> git config --global credential.helper
+manager
+<<< exitcode: 0
+
+>>> git config --show-origin credential.helper
+file:C:/Users/mini/.gitconfig	manager
+<<< exitcode: 0
+
+==========================================================================================
+GITHUB CLI (OPTIONAL)
+==========================================================================================
+
+>>> gh --version
+gh version 2.86.0 (2026-01-21)
+https://github.com/cli/cli/releases/tag/v2.86.0
+<<< exitcode: 0
+
+>>> gh auth status
+github.com
+  ✓ Logged in to github.com account jntnt0 (keyring)
+  - Active account: true
+  - Git operations protocol: https
+  - Token: gho_************************************
+  - Token scopes: 'gist', 'read:org', 'repo', 'workflow'
+<<< exitcode: 0
+
+==========================================================================================
+REPO DETAILS (ONLY IF INSIDE A WORK TREE)
+==========================================================================================
+
+>>> git rev-parse --show-toplevel
+C:/Repos/it-ops-runbooks
+<<< exitcode: 0
+
+>>> git remote -v
+inprogress	https://github.com/jntnt0/in-progress-runbooks.git (fetch)
+inprogress	https://github.com/jntnt0/in-progress-runbooks.git (push)
+origin	https://github.com/jntnt0/it-ops-runbooks.git (fetch)
+origin	https://github.com/jntnt0/it-ops-runbooks.git (push)
+<<< exitcode: 0
+
+>>> git status -sb
+## main...origin/main
+?? ../_audit/
+?? ../gcm-diagnose.log
+?? _audit/
+?? git-env-audit.ps1
+<<< exitcode: 0
+
+>>> git describe --tags --always --dirty
+4f0187e
+<<< exitcode: 0
+
+>>> git branch -vv
+* main 4f0187e [origin/main] Rename Block IP w\o CA.md to Block IP with out CA.md
+<<< exitcode: 0
+
+>>> git show -s --format=fuller HEAD
+commit 4f0187e0d59ed71a7f9a0d3be102bc2961d73898
+Author:     jntnt0 <jontant88@gmail.com>
+AuthorDate: Fri Feb 20 12:41:09 2026 -0500
+Commit:     GitHub <noreply@github.com>
+CommitDate: Fri Feb 20 12:41:09 2026 -0500
+
+    Rename Block IP w\o CA.md to Block IP with out CA.md
+<<< exitcode: 0
+
+>>> git log --oneline --decorate --graph -n 30
+* 4f0187e (HEAD -> main, origin/main, origin/HEAD) Rename Block IP w\o CA.md to Block IP with out CA.md
+* bc82f3a (origin/In-Progress-Runbooks) Create evidence-method.md
+* 288255e Scaffold evidence folders for runbooks (path-based slugs)
+* 520760d Create maintenance-window-and-risk-assessment-template.md
+* 92e55f4 Delete runbooks/az-700/maintenance-window-and-risk-assessment-template.md
+* 0da023e Rename backout-plan-template.md to backout-plan-template.md
+* a34c548 Rename outage-triage-framework.md to outage-triage-framework.md
+* ed46df5 Rename evidence-collection-standards.md to evidence-collection-standards.md
+* ae9c149 Create .gitkeep
+* 08de28d Create evidence-collection-standards.md
+* fb6476d Create maintenance-window-and-risk-assessment-template.md
+* 383351e Create backout-plan-template.md
+* f32a50f Create outage-triage-framework.md
+* ab6beed Create kerberos-vs-ntlm-explanation.md
+* 3dc0f69 Create nat-troubleshooting-flow.md
+* 981f600 Create vlan-misconfiguration-scenario.md
+* 462d935 Create dhcp-scope-troubleshooting.md
+* 16f81a6 Create .gitkeep
+* 8883d88 Create dns-records-troubleshooting.md
+* 8ccb0c0 Create vm-access-recovery-reset-password-and-serial-console.md
+* 7358175 Create budget-and-cost-alert-implementation.md
+* 8b6468c Create azure-activity-log-vs-sign-in-log-correlation.md
+* f677cd2 Create storage-account-security-and-403-troubleshooting.md
+* cee7bef Create vnet-nsg-troubleshooting-flow.md
+* 703b58c Create azure-rbac-in-practice.md
+* 405e580 Scaffold evidence folders for runbooks (path-based slugs)
+* 6acf369 Update scaffold-evidence-from-runbooks.yml
+* 53af063 Update scaffold-evidence-from-runbooks.yml
+* c6532c0 Create license-assignment-automation-powershell-graph-group-based.md
+* 1006d46 Create sharepoint-onedrive-sync-failure-troubleshooting.md
+<<< exitcode: 0
+
+>>> git reflog -n 30
+4f0187e HEAD@{0}: checkout: moving from main to main
+4f0187e HEAD@{1}: pull: Fast-forward
+cf39137 HEAD@{2}: checkout: moving from main to main
+cf39137 HEAD@{3}: reset: moving to HEAD~1
+95f1669 HEAD@{4}: commit: test auth cache
+cf39137 HEAD@{5}: commit: add entra graph smoke test and evidence guardrails
+5ac569e HEAD@{6}: clone: from https://github.com/jntnt0/it-ops-runbooks.git
+<<< exitcode: 0
+
+>>> git rev-list --left-right --count origin/main...HEAD
+0	0
+<<< exitcode: 0
+
+>>> git diff --stat
+(no output)
+<<< exitcode: 0
+
+>>> git diff --name-status origin/main..HEAD
+(no output)
+<<< exitcode: 0
+
+>>> git ls-files | Measure-Object
+
+Count             : 6
+Average           : 
+Sum               : 
+Maximum           : 
+Minimum           : 
+StandardDeviation : 
+Property          :
+<<< exitcode: 0
+
+>>> git ls-files -v | Select-String -Pattern "^[a-z]" -CaseSensitive | Select-Object -First 50
+(no output)
+<<< exitcode: 0
+
+>>> git check-attr -a -- .
+(no output)
+<<< exitcode: 0
+
+>>> git ls-files --stage | Select-Object -First 20
+100644 48cdce85287243a96a9e7d47855104acbcb79837 0	.gitkeep
+100644 4d8d8d3eb121b03599fb9482d6a1ae077166469a 0	README.md
+100644 44f83596206005aeb06c2f84ec652929589fa955 0	_template.ps1
+100644 9187f4614ebe7a8df5fe4972345eeee04b11f644 0	entra-export-auditlogs.ps1
+100644 789303eb532c6dffa3998340d12321e4150e32fe 0	entra-export-signinlogs.ps1
+100644 593909b04e7ae20ff07958ad41f87bb0421c3034 0	entra-graph-smoketest.ps1
+<<< exitcode: 0
+
+>>> Get-Content .gitignore (repo root, if present)
+# Evidence raw dumps should never be committed
+/evidence/**/raw/
+/evidence/**/raw/*
+*.zip
+*.csv
+*.jsonl
+*.evtx
+<<< exitcode: 0
+
+>>> Get-Content .gitattributes (repo root, if present)
+not present: C:\Repos\it-ops-runbooks\.gitattributes
+<<< exitcode: 0
+
+DONE
